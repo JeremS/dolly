@@ -39,5 +39,8 @@
   (clojure.repl/doc a-value)
   (cljs.repl/doc a-value)
 
+  (clojure.repl/doc a-fn)
+  (cljs.repl/doc a-fn)
+
   (clojure.repl/doc my-when)
   (cljs.repl/doc my-when))

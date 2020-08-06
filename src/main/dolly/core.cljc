@@ -5,7 +5,7 @@
      (:require-macros
        [dolly.core])))
 
-;; TODO add documentation notices
+
 (macro/deftime
   (defn resolve-cloned [cloned]
     (let [cloned-var (resolve cloned)]
@@ -21,11 +21,9 @@
        :cloned-meta (meta cloned-var)}))
 
 
-
   (defn- make-added-meta [{:keys [cloned-sym cloned-meta]}]
     (-> cloned-meta
-        (dissoc :line :column :file
-                :name :ns)
+        (dissoc :line :column :file :name :ns)
         (assoc ::clone-of cloned-sym)))
 
 
@@ -44,16 +42,8 @@
            :as info} (cloned-info cloned)
           added-meta (make-added-meta info)
           new-name (with-meta new-name
-                              (quote-relevant added-meta))]
-
-      (println "cloned" (-> info :cloned-meta :arglists))
-      (println "added" (-> added-meta :arglists))
-      (println "added&quoted" (-> added-meta quote-relevant :arglists))
-      (println "meta new" (meta new-name))
-      (macro/case :clj (println "clojure")
-                  :cljs (println "clojurescript"))
-
-
+                              (macro/case :clj (quote-relevant added-meta)
+                                          :cljs added-meta))]
       (when (:macro added-meta)
         (throw (ex-info (str "Can't clone the macro `" cloned-sym "` as a value.") {})))
 
@@ -81,6 +71,6 @@
      (let [cloned-var (resolve-cloned cloned)
            new-name (or new-name
                         (-> cloned-var symbol name symbol))]
-       (if (-> cloned-var meta  :macro)
+       (if (-> cloned-var meta :macro)
          `(clone-macro ~new-name ~cloned)
          `(clone-value ~new-name ~cloned))))))
