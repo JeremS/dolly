@@ -15,7 +15,11 @@
 
 (deftest clones
   (testing "Simple value"
-    (is (= a-value examples/a-value)))
+    (are [x y] (= x y)
+      a-value examples/a-value
+
+      (-> a-value var meta ::dolly/clone-of)
+      `examples/a-value))
 
   (testing "Function"
     (are [x y] (= x y)
@@ -27,3 +31,13 @@
     (is (= (my-when false 0 1) nil))))
 
 ;(clojure.test/run-tests)
+
+(comment
+  (meta (var a-value))
+  (meta (var a-fn))
+  (meta (var examples/a-fn))
+  (clojure.repl/doc a-value)
+  (cljs.repl/doc a-value)
+
+  (clojure.repl/doc my-when)
+  (cljs.repl/doc my-when))

@@ -6,7 +6,6 @@
        [dolly.core])))
 
 ;; TODO add documentation notices
-;; TODO clone specs
 (macro/deftime
   (defn resolve-cloned [cloned]
     (let [cloned-var (resolve cloned)]
@@ -22,46 +21,57 @@
        :cloned-meta (meta cloned-var)}))
 
 
+
+  (defn- make-added-meta [{:keys [cloned-sym cloned-meta]}]
+    (-> cloned-meta
+        (dissoc :line :column :file
+                :name :ns)
+        (assoc ::clone-of cloned-sym)))
+
+
   (defn- quote* [x]
     (list 'quote x))
 
 
-  (defn- make-added-meta [{:keys [cloned-sym cloned-meta]}]
-    (let [arglists (when-let [arglists (:arglists cloned-meta)]
-                     (println arglists)
-                     (quote* arglists))]
-      (println arglists)
-      (-> cloned-meta
-          (dissoc :line :column :file
-                  :name :ns)
-          (assoc ::clone-of (quote* cloned-sym))
-          (cond-> arglists (assoc :arglists arglists)))))
+  (defn- quote-relevant [m]
+    (-> m
+        (update ::clone-of quote*)
+        (cond-> (:arglists m) (update :arglists quote*))))
 
 
   (defmacro clone-value [new-name cloned]
     (let [{:keys [cloned-sym]
            :as info} (cloned-info cloned)
           added-meta (make-added-meta info)
-          new-name (with-meta new-name added-meta)]
+          new-name (with-meta new-name
+                              (quote-relevant added-meta))]
+
+      (println "cloned" (-> info :cloned-meta :arglists))
+      (println "added" (-> added-meta :arglists))
+      (println "added&quoted" (-> added-meta quote-relevant :arglists))
+      (println "meta new" (meta new-name))
+      (macro/case :clj (println "clojure")
+                  :cljs (println "clojurescript"))
+
+
       (when (:macro added-meta)
         (throw (ex-info (str "Can't clone the macro `" cloned-sym "` as a value.") {})))
-      `(do
-         (def ~new-name ~cloned-sym))))
+
+      `(def ~new-name ~cloned-sym)))
 
 
   (defmacro clone-macro [new-name cloned]
     (let [{:keys [cloned-sym]
            :as info} (cloned-info cloned)
-          added-meta (make-added-meta info)
-          new-name (with-meta new-name added-meta)]
-
+          added-meta (make-added-meta info)]
       (when-not (:macro added-meta)
         (throw (ex-info (str "Can't clone the value `" cloned-sym "` as a macro.") {})))
 
       `(macro/deftime
          (do
            (defmacro ~new-name [& body#]
-             (list* '~cloned-sym body#))))))
+             (list* '~cloned-sym body#))
+           (alter-meta! (var ~new-name) merge '~added-meta)))))
 
 
   (defmacro def-clone
@@ -74,12 +84,3 @@
        (if (-> cloned-var meta  :macro)
          `(clone-macro ~new-name ~cloned)
          `(clone-value ~new-name ~cloned))))))
-
-
-(comment
-  (defn add-alias-notice! [a-var aliased]
-    (if-let [original (-> aliased resolve meta ::aliasing)]
-      (alter-meta! a-var assoc ::aliasing original)
-      (alter-meta! a-var #(-> %
-                              (assoc ::aliasing aliased)
-                              (update :doc str "\n\n  aliasing: " (format "[[%s]]" aliased)))))))
