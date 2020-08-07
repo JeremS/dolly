@@ -7,18 +7,24 @@
 
 
 (macro/deftime
-  (defn resolve-cloned [cloned]
+  (defn- resolve-cloned [cloned]
     (let [cloned-var (resolve cloned)]
       (if cloned-var
         cloned-var
         (throw (ex-info (str "Can't resolve `" cloned  "` while cloning var.") {})))))
 
 
-  (defn- cloned-info [cloned]
-    (let [cloned-var (resolve-cloned cloned)]
+  (defn cloned-info
+    [cloned]
+    (let [cloned-var (resolve-cloned cloned)
+          cloned-meta (meta cloned-var)]
       {:cloned-var cloned-var
        :cloned-sym (symbol cloned-var)
-       :cloned-meta (meta cloned-var)}))
+       :cloned-meta cloned-meta
+       :type (cond
+               (:macro cloned-meta) :macro
+               (:arglists cloned-meta) :function
+               :else :value)}))
 
 
   (defn- make-added-meta [{:keys [cloned-sym cloned-meta]}]

@@ -30,9 +30,10 @@
     (is (= (my-when true 0 1) 1))
     (is (= (my-when false 0 1) nil))))
 
-;(clojure.test/run-tests)
 
 (comment
+  (clojure.test/run-tests)
+  (cljs.test/run-tests)
   (meta (var a-value))
   (meta (var a-fn))
   (meta (var examples/a-fn))
