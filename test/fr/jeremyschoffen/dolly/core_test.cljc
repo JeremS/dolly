@@ -1,8 +1,8 @@
-(ns dolly.core-test
+(ns fr.jeremyschoffen.dolly.core-test
   (:require [clojure.test :refer [deftest is are testing]]
-            [dolly.core :as dolly]
-            [dolly.examples :as examples])
-  #?(:cljs (:require-macros [dolly.core-test :refer [my-when]])))
+            [fr.jeremyschoffen.dolly.core :as dolly]
+            [fr.jeremyschoffen.dolly.examples :as examples])
+  #?(:cljs (:require-macros [fr.jeremyschoffen.dolly.core-test :refer [my-when]])))
 
 
 (dolly/def-clone examples/a-value)

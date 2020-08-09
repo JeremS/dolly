@@ -10,6 +10,7 @@
 
 
 (def specific-conf (sorted-map
+                     :maven/group-id 'fr.jeremyschoffen
                      :versioning/major :alpha
                      :versioning/scheme mbt-defaults/simple-scheme))
 

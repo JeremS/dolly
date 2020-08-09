@@ -1,8 +1,8 @@
-(ns dolly.examples
+(ns fr.jeremyschoffen.dolly.examples
   (:require [net.cgrand.macrovich :as macro])
   #?(:cljs
      (:require-macros
-       [dolly.examples])))
+       [fr.jeremyschoffen.dolly.examples])))
 
 
 
