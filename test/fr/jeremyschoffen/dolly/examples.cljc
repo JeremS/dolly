@@ -1,9 +1,13 @@
 (ns fr.jeremyschoffen.dolly.examples
-  (:require [net.cgrand.macrovich :as macro])
+  (:require
+    [net.cgrand.macrovich :as macro]
+    [fr.jeremyschoffen.dolly.core :as dolly])
   #?(:cljs
      (:require-macros
        [fr.jeremyschoffen.dolly.examples])))
 
+
+(dolly/add-keys-to-quote! :my-key)
 
 
 (def a-value
@@ -12,6 +16,7 @@
 
 (defn a-fn
   "An example fn to be cloned and tested."
+  {:my-key 'a-symbol}
   [x] (* x 2))
 
 (macro/deftime

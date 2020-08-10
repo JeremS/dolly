@@ -32,6 +32,7 @@
 
 
 (comment
+  (type 1)
   (clojure.test/run-tests)
   (cljs.test/run-tests)
   (meta (var a-value))

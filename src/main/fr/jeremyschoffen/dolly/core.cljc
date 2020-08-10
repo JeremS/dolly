@@ -1,5 +1,6 @@
 (ns fr.jeremyschoffen.dolly.core
   (:require
+    [clojure.set :as set]
     [net.cgrand.macrovich :as macro])
   #?(:cljs
      (:require-macros
@@ -7,6 +8,26 @@
 
 
 (macro/deftime
+
+  (def ^:private meta-keys-to-quote (atom #{::clone-of :arglists}))
+
+
+  (defmacro add-keys-to-quote!
+    "When using your own metadata on defs, you might use symbols as data.
+    The keys under which you store such data may need to be quoted by the
+    [[fr.jeremyschoffen.dolly.core/def-clone]] macro. You can add those keys
+    to be quoted with this function"
+    [& keys]
+    (swap! meta-keys-to-quote set/union (set keys))
+    `(do))
+
+
+  (defmacro remove-keys-to-quote! [& keys]
+    "Opposite of [[fr.jeremyschoffen.dolly.core/add-keys-to-quote!]]"
+    (swap! meta-keys-to-quote set/difference (set keys))
+    `(do))
+
+
   (defn- resolve-cloned [cloned]
     (let [cloned-var (resolve cloned)]
       (if cloned-var
@@ -38,9 +59,13 @@
 
 
   (defn- quote-relevant [m]
-    (-> m
-        (update ::clone-of quote*)
-        (cond-> (:arglists m) (update :arglists quote*))))
+    (let [ks-to-quote @meta-keys-to-quote]
+      (reduce-kv (fn [acc k v]
+                   (if (contains? ks-to-quote k)
+                     (assoc acc k (quote* v))
+                     acc))
+                 m
+                 m)))
 
 
   (defmacro clone-value [new-name cloned]
