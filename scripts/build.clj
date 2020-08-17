@@ -9,7 +9,12 @@
 
 (def specific-conf (sorted-map
                      :maven/group-id 'fr.jeremyschoffen
-                     :versioning/scheme mbt-defaults/simple-scheme))
+                     :versioning/scheme mbt-defaults/simple-scheme
+
+                     :project/licenses [{:project.licence/name "Eclipse Public License - v 2.0"
+                                         :project.licence/url "https://www.eclipse.org/legal/epl-v20.html"
+                                         :project.licence/distribution :repo
+                                         :project.license/file (u/safer-path "LICENSE")}]))
 
 
 (def conf (mbt-defaults/make-conf specific-conf))
