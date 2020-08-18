@@ -14,7 +14,7 @@
 
   (defmacro add-keys-to-quote!
     "When using your own metadata on defs, you might use symbols as data.
-    The keys under which you store such data may need to be quoted by the
+    The data stored under these keys may need to be quoted by the
     [[fr.jeremyschoffen.dolly.core/def-clone]] macro. You can add those keys
     to be quoted with this function"
     [& keys]
