@@ -14,5 +14,5 @@
                                lambdaisland/kaocha-cljs {:mvn/version "0.0-71"}}}
 
            :build {:extra-paths ["scripts"]
-                   :extra-deps {fr.jeremyschoffen/mbt-alpha-unstable {:mvn/version "8"
-                                                                      :exclusions [fr.jeremyschoffen/dolly]}}}}}
+                   :extra-deps {fr.jeremyschoffen/mbt-alpha {:mvn/version "0"
+                                                             :exclusions [fr.jeremyschoffen/dolly]}}}}}

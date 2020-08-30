@@ -72,9 +72,10 @@
     (let [{:keys [cloned-sym]
            :as info} (cloned-info cloned)
           added-meta (make-added-meta info)
-          new-name (with-meta new-name
-                              (macro/case :clj (quote-relevant added-meta)
-                                          :cljs added-meta))]
+          new-meta (merge (macro/case :clj (quote-relevant added-meta)
+                                      :cljs added-meta)
+                          (meta new-name))
+          new-name (with-meta new-name new-meta)]
       (when (:macro added-meta)
         (throw (ex-info (str "Can't clone the macro `" cloned-sym "` as a value.") {})))
 
@@ -92,7 +93,7 @@
          (do
            (defmacro ~new-name [& body#]
              (list* '~cloned-sym body#))
-           (alter-meta! (var ~new-name) merge '~added-meta)))))
+           (alter-meta! (var ~new-name) #(merge '~added-meta %))))))
 
 
   (defmacro def-clone
