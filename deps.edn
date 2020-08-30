@@ -13,6 +13,8 @@
                   :extra-deps {lambdaisland/kaocha {:mvn/version "1.0.641"}
                                lambdaisland/kaocha-cljs {:mvn/version "0.0-71"}}}
 
-           :build {:extra-paths ["scripts"]
+
+           :build {:extra-paths ["scripts" "src/doc/"]
                    :extra-deps {fr.jeremyschoffen/mbt-alpha {:mvn/version "0"
-                                                             :exclusions [fr.jeremyschoffen/dolly]}}}}}
+                                                             :exclusions [fr.jeremyschoffen/dolly]}
+                                fr.jeremyschoffen/textp-doc-alpha {:mvn/version "0"}}}}}
