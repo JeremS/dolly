@@ -1,4 +1,4 @@
-(ns docs.core
+(ns fr.jeremyschoffen.dolly.docs.core
   (:require
     [fr.jeremyschoffen.textp.alpha.doc.core :as tp-doc]
     [fr.jeremyschoffen.mbt.alpha.utils :as u]))
@@ -9,7 +9,7 @@
 
 
 
-(def readme-path "docs/pages/README.md.tp")
+(def readme-path "fr/jeremyschoffen/dolly/docs/pages/README.md.tp")
 
 
 (defn make-readme! [{wd ::project/working-dir
