@@ -10,7 +10,7 @@ Utilities for cloning vars in Clojure and Clojurescript.
 ## Installation
 Deps coords:
 ```clojure
-#:fr.jeremyschoffen{dolly #:mvn{:version "0"}}
+{fr.jeremyschoffen/dolly {:mvn/version "0"}}
 ```
 Lein coords:
 ```clojure
