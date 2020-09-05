@@ -46,7 +46,7 @@ Lein coords:
 
 ## Inspirations
 This project is inspired by [https://github.com/aleph-io/potemkin](potemkin's') import var system.
-However dolly's `def-clone` doesn't link aliased vars to propagate change when reloaded the original is redefined.
+However dolly's `def-clone` doesn't link aliased vars to propagate change when the original is redefined.
 I don't think that's possible in Clojurescript and this projects aims to work with it.
 
 ## License
