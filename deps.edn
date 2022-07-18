@@ -14,7 +14,5 @@
                                lambdaisland/kaocha-cljs {:mvn/version "0.0-71"}}}
 
 
-           :build {:extra-paths ["scripts" "src/build" "build"]
-                   :extra-deps {fr.jeremyschoffen/mbt-alpha {:mvn/version "0"
-                                                             :exclusions [fr.jeremyschoffen/dolly]}
-                                fr.jeremyschoffen/textp-doc-alpha {:local/root "../textp/textp-doc"}}}}}
+           :build {:extra-paths ["src/build" "build"]
+                   :extra-deps {}}}}
