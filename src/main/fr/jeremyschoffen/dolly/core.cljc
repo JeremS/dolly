@@ -22,8 +22,9 @@
     `(do))
 
 
-  (defmacro remove-keys-to-quote! [& keys]
+  (defmacro remove-keys-to-quote!
     "Opposite of [[fr.jeremyschoffen.dolly.core/add-keys-to-quote!]]"
+    [& keys]
     (swap! meta-keys-to-quote set/difference (set keys))
     `(do))
 
