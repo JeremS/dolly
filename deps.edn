@@ -9,7 +9,7 @@
 
            :cljs {:extra-deps {org.clojure/clojurescript {:mvn/version "1.10.520"}}}
 
-           :test {:extra-paths ["test"]
+           :test {:extra-paths ["src/test"]
                   :extra-deps {lambdaisland/kaocha {:mvn/version "1.0.641"}
                                lambdaisland/kaocha-cljs {:mvn/version "0.0-71"}}}
 
