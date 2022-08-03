@@ -5,3 +5,7 @@ node_modules
 .cpcache
 .nrepl-port
 package-lock.json
+
+
+.clj-kondo/**
+!.clj-kondo/config.edn

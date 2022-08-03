@@ -1,9 +1,10 @@
-{:paths ["src/main"]
+{:paths ["src/main" "resources"]
  :deps {net.cgrand/macrovich {:mvn/version "0.2.1"}}
 
  :aliases {:dev {:extra-paths ["src/dev"]
                  :extra-deps {nrepl/nrepl      {:mvn/version "0.7.0"}
-                              cider/piggieback {:mvn/version "0.5.0"}}}
+                              cider/piggieback {:mvn/version "0.5.0"}
+                              clj-kondo/clj-kondo {:mvn/version "2022.06.22"}}}
 
            :clj {:extra-deps {org.clojure/clojure {:mvn/version "1.10.1"}}}
 

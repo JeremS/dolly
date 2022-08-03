@@ -1,7 +1,8 @@
 (ns fr.jeremyschoffen.dolly.core-test
-  (:require [clojure.test :refer [deftest is are testing]]
-            [fr.jeremyschoffen.dolly.core :as dolly]
-            [fr.jeremyschoffen.dolly.examples :as examples])
+  (:require
+    [clojure.test :refer [deftest is are testing]]
+    [fr.jeremyschoffen.dolly.core :as dolly]
+    [fr.jeremyschoffen.dolly.examples :as examples])
   #?(:cljs (:require-macros [fr.jeremyschoffen.dolly.core-test :refer [my-when]])))
 
 
@@ -10,7 +11,6 @@
 (dolly/def-clone examples/a-fn)
 
 (dolly/def-clone examples/my-when)
-
 
 
 (deftest clones

@@ -1,0 +1,2 @@
+{:hooks
+ {:analyze-call {fr.jeremyschoffen.dolly.core/def-clone fr.jeremyschoffen.dolly.clj-kondo.hooks/def-clone}}}

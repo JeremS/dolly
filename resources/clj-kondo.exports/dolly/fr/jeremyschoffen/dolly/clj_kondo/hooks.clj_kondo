@@ -1,0 +1,19 @@
+(ns fr.jeremyschoffen.dolly.clj-kondo.hooks
+  (:require
+    [clj-kondo.hooks-api :as api]))
+
+
+(defn trim-ns [sym]
+  (-> sym name symbol))
+
+
+(defn def-clone [{:keys [node] :as p}]
+  (let [[_ p1 p2 :as exp] (api/sexpr node)
+        params (if p2
+                 exp
+                 ['def (-> p1 trim-ns) p1])
+        res (->> params
+                 (map api/token-node)
+                 api/list-node)]
+    (assoc p :node res)))
+
