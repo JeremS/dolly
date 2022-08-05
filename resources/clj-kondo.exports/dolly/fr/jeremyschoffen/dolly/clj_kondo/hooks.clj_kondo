@@ -9,11 +9,13 @@
 
 (defn def-clone [{:keys [node] :as p}]
   (let [[_ p1 p2 :as exp] (api/sexpr node)
+        _ (println "exp" exp)
         params (if p2
-                 exp
-                 ['def (-> p1 trim-ns) p1])
+                 [p1 p2]
+                 [(-> p1 trim-ns) p1])
         res (->> params
+                 (cons 'def)
                  (map api/token-node)
                  api/list-node)]
-    (assoc p :node res)))
+    {:node res}))
 
