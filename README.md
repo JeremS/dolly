@@ -7,7 +7,7 @@ Utilities for cloning vars in Clojure and Clojurescript.
 
 ## Installation
 ```clojure
-{io.github.jerems/dolly {:git/tag "v27", :git/sha "835e15c649"}}
+{io.github.jerems/dolly {:git/tag "v29", :git/sha "cfefa49133"}}
 ```
 
 ## Usage
