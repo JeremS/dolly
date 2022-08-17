@@ -7,7 +7,7 @@ Utilities for cloning vars in Clojure and Clojurescript.
 
 ## Installation
 ```clojure
-{io.github.jerems/dolly {:git/tag nil, :git/sha nil}}
+{io.github.jerems/dolly {:git/tag "v27", :git/sha "835e15c649"}}
 ```
 
 ## Usage
@@ -30,7 +30,7 @@ Utilities for cloning vars in Clojure and Clojurescript.
   "Some doc for baz."
   [])
 
-;; And changed some metadata for the clone.
+;; And change some metadata for the clone.
 (def-clone ^{:doc "Some other doc"}cloned-baz baz)
 
 (clojure.repl/doc cloned-baz)
