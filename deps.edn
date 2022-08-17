@@ -15,5 +15,5 @@
                                lambdaisland/kaocha-cljs {:mvn/version "0.0-71"}}}
 
 
-           :build {:extra-paths ["src/build" "build"]
-                   :extra-deps {}}}}
+           :build {:extra-paths ["src/build" "src/docs"]
+                   :extra-deps {io.github.jerems/mbt2 {:git/tag "v5", :git/sha "f5b65fe8cc"}}}}}

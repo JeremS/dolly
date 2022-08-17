@@ -1,17 +1,14 @@
-◊(require '[fr.jeremyschoffen.textp.alpha.doc.tags :as tags])◊
-◊(require '[fr.jeremyschoffen.textp.alpha.html.tags :as html])◊
+◊(require '[fr.jeremyschoffen.prose.alpha.document.lib :as lib]
+          '[fr.jeremyschoffen.prose.alpha.out.html.tags :as html]
+          '[fr.jeremyschoffen.mbt2.prose.tags :as t])
 
 # Dolly
 
 Utilities for cloning vars in Clojure and Clojurescript.
 
-◊(do
-   (defn >' [& args]
-     ◊html/un-escaped{>})
-   "")◊
 
 ## Installation
-◊tags/project-coords
+◊t/version
 
 ## Usage
 
@@ -25,7 +22,7 @@ Utilities for cloning vars in Clojure and Clojurescript.
 
 ;; The docstring (and other var metadata) is cloned
 (clojure.repl/doc foo)
-;=◊>' "Some foo doc"
+;=> "Some foo doc"
 
 
 ;; We can clone macros
@@ -37,7 +34,7 @@ Utilities for cloning vars in Clojure and Clojurescript.
 (def-clone ^{:doc "Some other doc"}cloned-baz baz)
 
 (clojure.repl/doc cloned-baz)
-;=◊>' "Some other doc"
+;=> "Some other doc"
 ```
 
 ## Inspirations
@@ -47,6 +44,6 @@ I don't think that's possible in Clojurescript and this projects aims to work wi
 
 ## License
 
-Copyright © 2020 Jeremy Schoffen.
+Copyright © 2020-2022 Jeremy Schoffen.
 
 Distributed under the Eclipse Public License v 2.0.

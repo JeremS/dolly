@@ -1,5 +1,4 @@
-{:paths ["src/bb"]
- :tasks
+{:tasks
  {repl (clojure "-M:clj:cljs:dev:test:build -m nrepl.cmdline")
   test-clj (clojure "-M:clj:cljs:test -m kaocha.runner unit-clj")
   test-cljs (clojure "-M:clj:cljs:test -m kaocha.runner unit-cljs")}}
