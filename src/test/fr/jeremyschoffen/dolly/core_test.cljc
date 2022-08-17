@@ -1,6 +1,7 @@
 (ns fr.jeremyschoffen.dolly.core-test
   (:require
-    [clojure.test :refer [deftest is are testing]]
+    #?(:clj [clojure.test :refer [deftest is are testing run-test]]
+       :cljs [cljs.test :refer-macros [deftest is are testing run-tests]])
     [fr.jeremyschoffen.dolly.core :as dolly]
     [fr.jeremyschoffen.dolly.examples :as examples])
   #?(:cljs (:require-macros [fr.jeremyschoffen.dolly.core-test :refer [my-when]])))
@@ -33,8 +34,7 @@
 
 (comment
   (type 1)
-  (clojure.test/run-tests)
-  (cljs.test/run-tests)
+  (run-tests)
   (meta (var a-value))
   (meta (var a-fn))
   (meta (var examples/a-fn))

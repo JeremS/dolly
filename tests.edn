@@ -6,6 +6,7 @@
 
              {:id :unit-cljs
               :type :kaocha.type/cljs
+              :cljs/timeout 20000
               :source-paths ["src/main"]
               :test-paths ["src/test"]
               :ns-patterns ["-test$"]}]}
