@@ -1,20 +1,13 @@
 
 
-
 # Dolly
 
 Utilities for cloning vars in Clojure and Clojurescript.
 
 
-
 ## Installation
-Deps coords:
 ```clojure
-{fr.jeremyschoffen/dolly {:mvn/version "0"}}
-```
-Lein coords:
-```clojure
-[fr.jeremyschoffen/dolly "0"]
+{io.github.jerems/dolly {:git/tag nil, :git/sha nil}}
 ```
 
 ## Usage
@@ -51,6 +44,6 @@ I don't think that's possible in Clojurescript and this projects aims to work wi
 
 ## License
 
-Copyright © 2020 Jeremy Schoffen.
+Copyright © 2020-2022 Jeremy Schoffen.
 
 Distributed under the Eclipse Public License v 2.0.

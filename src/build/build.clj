@@ -10,7 +10,6 @@
 (defn generate-readme! []
   (spit "README.md" (p/generate-md-doc "README.md.prose" {:lib-name lib-name})))
 
-(p/eval-doc "README.md.prose" {:lib-name lib-name})
 
 (defn generate-docs! []
   ;; generate stuff
@@ -27,6 +26,5 @@
 
 
 (comment
-  (-> *e ex-data)
   (generate-readme!)
   (release!))
