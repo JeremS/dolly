@@ -1,2 +1,2 @@
-{:config-paths ["../resources/clj-kondo.exports/dolly"]}
+{:config-paths ["../resources/clj-kondo.exports/fr.jeremyschoffen/dolly"]}
 

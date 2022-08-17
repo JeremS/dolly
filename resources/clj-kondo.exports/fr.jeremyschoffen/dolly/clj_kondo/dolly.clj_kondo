@@ -1,4 +1,4 @@
-(ns fr.jeremyschoffen.dolly.clj-kondo.hooks
+(ns clj-kondo.dolly
   (:require
     [clj-kondo.hooks-api :as api]))
 
