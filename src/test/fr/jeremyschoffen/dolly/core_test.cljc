@@ -1,6 +1,6 @@
 (ns fr.jeremyschoffen.dolly.core-test
   (:require
-    #?(:clj [clojure.test :refer [deftest is are testing run-test]]
+    #?(:clj [clojure.test :refer [deftest is are testing run-tests]]
        :cljs [cljs.test :refer-macros [deftest is are testing run-tests]])
     [fr.jeremyschoffen.dolly.core :as dolly]
     [fr.jeremyschoffen.dolly.examples :as examples])
