@@ -12,7 +12,7 @@
 
            :test {:extra-paths ["src/test"]
                   :extra-deps {lambdaisland/kaocha {:mvn/version "1.69.1069"}
-                               lambdaisland/kaocha-cljs {:mvn/version "1.0.107"}}}
+                               com.lambdaisland/kaocha-cljs {:mvn/version "1.2.123"}}}
 
 
            :build {:extra-paths ["src/build" "src/docs"]
